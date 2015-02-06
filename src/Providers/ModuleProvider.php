@@ -1,25 +1,17 @@
 <?php
 namespace TypiCMS\Modules\Translations\Providers;
 
-use Lang;
-use View;
 use Config;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
-
-// Model
+use Illuminate\Support\ServiceProvider;
+use Lang;
 use TypiCMS\Modules\Translations\Models\Translation;
-
-// Repo
-use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
-
-// Cache
 use TypiCMS\Modules\Translations\Repositories\CacheDecorator;
-use TypiCMS\Services\Cache\LaravelCache;
-
-// Form
+use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 use TypiCMS\Modules\Translations\Services\Form\TranslationForm;
 use TypiCMS\Modules\Translations\Services\Form\TranslationFormLaravelValidator;
+use TypiCMS\Services\Cache\LaravelCache;
+use View;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -30,7 +22,7 @@ class ModuleProvider extends ServiceProvider
         require __DIR__ . '/../routes.php';
 
         // Add dirs
-        View::addLocation(__DIR__ . '/../Views');
+        View::addNamespace('translations', __DIR__ . '/../views/');
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'translations');
         $this->publishes([
             __DIR__ . '/../config/' => config_path('typicms/translations'),
