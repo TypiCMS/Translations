@@ -17,6 +17,6 @@
             <span class="input-group-addon">{{ strtoupper($lang) }}</span>
             <input class="form-control" type="text" name="{{ $lang }}[translation]">
         </div>
-        {{ $errors->first($lang.'.translation', '<p class="help-block">:message</p>') }}
+        {!! $errors->first($lang.'.translation', '<p class="help-block">:message</p>') !!}
     </div>
 @endforeach
