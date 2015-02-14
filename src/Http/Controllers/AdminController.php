@@ -1,7 +1,7 @@
 <?php
-namespace TypiCMS\Modules\Translations\Controllers;
+namespace TypiCMS\Modules\Translations\Http\Controllers;
 
-use TypiCMS\Controllers\AdminSimpleController;
+use TypiCMS\Http\Controllers\AdminSimpleController;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
 use TypiCMS\Modules\Translations\Services\Form\TranslationForm;
 

@@ -1,8 +1,8 @@
 <?php
-namespace TypiCMS\Modules\Translations\Controllers;
+namespace TypiCMS\Modules\Translations\Http\Controllers;
 
 use Response;
-use TypiCMS\Controllers\BaseApiController;
+use TypiCMS\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface as Repository;
 
 class ApiController extends BaseApiController
