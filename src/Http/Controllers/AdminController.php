@@ -2,15 +2,39 @@
 namespace TypiCMS\Modules\Translations\Http\Controllers;
 
 use TypiCMS\Http\Controllers\AdminSimpleController;
+use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
-use TypiCMS\Modules\Translations\Services\Form\TranslationForm;
 
 class AdminController extends AdminSimpleController
 {
 
-    public function __construct(TranslationInterface $translation, TranslationForm $translationform)
+    public function __construct(TranslationInterface $translation)
     {
-        parent::__construct($translation, $translationform);
-        $this->title['parent'] = trans_choice('translations::global.translations', 2);
+        parent::__construct($translation);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  FormRequest $request
+     * @return Redirect
+     */
+    public function store(FormRequest $request)
+    {
+        $model = $this->repository->create($request->all());
+        return $this->redirect($request, $model);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  $model
+     * @param  FormRequest $request
+     * @return Redirect
+     */
+    public function update($model, FormRequest $request)
+    {
+        $this->repository->update($request->all());
+        return $this->redirect($request, $model);
     }
 }

@@ -8,8 +8,6 @@ use Lang;
 use TypiCMS\Modules\Translations\Models\Translation;
 use TypiCMS\Modules\Translations\Repositories\CacheDecorator;
 use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
-use TypiCMS\Modules\Translations\Services\Form\TranslationForm;
-use TypiCMS\Modules\Translations\Services\Form\TranslationFormLaravelValidator;
 use TypiCMS\Services\Cache\LaravelCache;
 use View;
 
@@ -54,13 +52,6 @@ class ModuleProvider extends ServiceProvider
             $laravelCache = new LaravelCache($app['cache'], 'translations', 10);
 
             return new CacheDecorator($repository, $laravelCache);
-        });
-
-        $app->bind('TypiCMS\Modules\Translations\Services\Form\TranslationForm', function (Application $app) {
-            return new TranslationForm(
-                new TranslationFormLaravelValidator($app['validator']),
-                $app->make('TypiCMS\Modules\Translations\Repositories\TranslationInterface')
-            );
         });
 
     }
