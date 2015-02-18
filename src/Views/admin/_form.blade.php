@@ -6,7 +6,7 @@
 @include('core::admin._buttons-form')
 
 {!! BootForm::hidden('id') !!}
-{!! BootForm::hidden('group', 'db') !!}
+{!! BootForm::hidden('group')->value('db') !!}
 
 {!! BootForm::text(trans('validation.attributes.key'), 'key') !!}
 
