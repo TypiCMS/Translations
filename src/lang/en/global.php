@@ -1,6 +1,6 @@
 <?php
 return array(
-    'name' => 'translations',
+    'name' => 'Translations',
     'translations' => 'translation|translations',
     'New'  => 'New translation',
     'Edit' => 'Edit translation',
