@@ -1,11 +1,11 @@
 <?php
 namespace TypiCMS\Modules\Translations\Http\Controllers;
 
-use TypiCMS\Http\Controllers\AdminSimpleController;
+use TypiCMS\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
 
-class AdminController extends AdminSimpleController
+class AdminController extends BaseAdminController
 {
 
     public function __construct(TranslationInterface $translation)
