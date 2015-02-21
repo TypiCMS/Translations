@@ -17,16 +17,18 @@ class ModuleProvider extends ServiceProvider
     public function boot()
     {
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'translations');
-        $this->publishes([
-            __DIR__ . '/../views' => base_path('resources/views/vendor/translations'),
-        ], 'views');
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'translations');
         $this->mergeConfigFrom(
             __DIR__ . '/../config/config.php', 'typicms.translations'
         );
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'translations');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'translations');
+
         $this->publishes([
-            __DIR__ . '/../migrations/' => base_path('/database/migrations'),
+            __DIR__ . '/../views' => base_path('resources/views/vendor/translations'),
+        ], 'views');
+        $this->publishes([
+            __DIR__ . '/../database' => base_path('/database'),
         ], 'migrations');
     }
 
