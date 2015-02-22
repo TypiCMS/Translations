@@ -3,15 +3,11 @@ use TypiCMS\Modules\Translations\Models\Translation;
 
 class TranslationsControllerTest extends TestCase
 {
-    public function tearDown()
-    {
-        Mockery::close();
-    }
 
     public function testAdminIndex()
     {
-        $this->get('admin/translations');
-        $this->assertTrue($this->client->getResponse()->isOk());
+        $response = $this->call('GET', 'admin/translations');
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     public function testStoreFails()
