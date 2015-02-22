@@ -28,8 +28,11 @@ class ModuleProvider extends ServiceProvider
             __DIR__ . '/../views' => base_path('resources/views/vendor/translations'),
         ], 'views');
         $this->publishes([
-            __DIR__ . '/../database' => base_path('/database'),
+            __DIR__ . '/../database' => base_path('database'),
         ], 'migrations');
+        $this->publishes([
+            __DIR__ . '/../../tests' => base_path('tests'),
+        ], 'tests');
     }
 
     public function register()
