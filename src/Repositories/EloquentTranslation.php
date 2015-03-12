@@ -18,7 +18,7 @@ class EloquentTranslation extends RepositoriesAbstract implements TranslationInt
      *
      * @return array
      */
-    public function getAllToArray($locale, $group, $namespace = null)
+    public function allToArray($locale, $group, $namespace = null)
     {
         $array = DB::table('translations')
                 ->select('translation', 'key')

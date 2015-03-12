@@ -58,7 +58,7 @@ class MixedLoader implements LoaderInterface
      */
     public function loadFromDB($locale, $group, $namespace = null)
     {
-        return $this->repository->getAllToArray($locale, $group, $namespace);
+        return $this->repository->allToArray($locale, $group, $namespace);
     }
 
     /**

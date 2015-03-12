@@ -11,5 +11,5 @@ interface TranslationInterface extends RepositoryInterface
      *
      * @return array
      */
-    public function getAllToArray($locale, $group, $namespace = null);
+    public function allToArray($locale, $group, $namespace = null);
 }

@@ -19,7 +19,7 @@ class CacheDecorator extends CacheAbstractDecorator implements TranslationInterf
      *
      * @return array
      */
-    public function getAllToArray($locale, $group, $namespace = null)
+    public function allToArray($locale, $group, $namespace = null)
     {
         $cacheKey = md5(App::getLocale().'TranslationsToArray');
 
@@ -27,7 +27,7 @@ class CacheDecorator extends CacheAbstractDecorator implements TranslationInterf
             return $this->cache->get($cacheKey);
         }
 
-        $data = $this->repo->getAllToArray($locale, $group, $namespace);
+        $data = $this->repo->allToArray($locale, $group, $namespace);
 
         // Store in cache for next request
         $this->cache->put($cacheKey, $data);
