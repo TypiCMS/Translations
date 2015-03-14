@@ -14,7 +14,7 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="key" st-sort-default class="key st-sort" translate>Key</th>
+                    <th st-sort="key" st-sort-default="true" class="key st-sort" translate>Key</th>
                     <th st-sort="translation" class="translation st-sort" translate>Translation</th>
                 </tr>
                 <tr>
