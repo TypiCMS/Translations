@@ -54,7 +54,7 @@ class ModuleProvider extends ServiceProvider
             $repository = new EloquentTranslation(
                 new Translation
             );
-            if (! Config::get('app.cache')) {
+            if (! config('typicms.cache')) {
                 return $repository;
             }
             $laravelCache = new LaravelCache($app['cache'], 'translations', 10);
