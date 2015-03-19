@@ -30,8 +30,10 @@
 
             <tbody>
                 <tr ng-repeat="model in displayedModels">
-                    <td><typi-btn-delete ng-click="delete(model, model.key)"></typi-btn-delete></td>
-                    <td typi-btn-edit></td>
+                    <td typi-btn-delete action="delete(model, model.key)"></td>
+                    <td>
+                        @include('core::admin._button-edit')
+                    </td>
                     <td>@{{ model.key }}</td>
                     <td contentEditable highlighter="model.translation" ng-model="model.translation" ng-blur="update(model)">
                         @{{ model.translation }}
