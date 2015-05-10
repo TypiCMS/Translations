@@ -2,9 +2,9 @@
 namespace TypiCMS\Modules\Translations\Models;
 
 use Dimsav\Translatable\Translatable;
+use Laracasts\Presenter\PresentableTrait;
 use TypiCMS\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
-use TypiCMS\Presenters\PresentableTrait;
 
 class Translation extends Base
 {
