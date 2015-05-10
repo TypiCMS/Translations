@@ -1,7 +1,7 @@
 <?php
 namespace TypiCMS\Modules\Translations\Http\Controllers;
 
-use TypiCMS\Http\Controllers\BaseAdminController;
+use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
 
