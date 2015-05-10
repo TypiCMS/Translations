@@ -1,15 +1,12 @@
 <?php
 namespace TypiCMS\Modules\Translations\Providers;
 
-use Config;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Lang;
 use TypiCMS\Modules\Translations\Models\Translation;
 use TypiCMS\Modules\Translations\Repositories\CacheDecorator;
 use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
-use View;
 
 class ModuleProvider extends ServiceProvider
 {

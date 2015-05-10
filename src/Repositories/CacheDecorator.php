@@ -1,7 +1,6 @@
 <?php
 namespace TypiCMS\Modules\Translations\Repositories;
 
-use App;
 use TypiCMS\Modules\Core\Repositories\CacheAbstractDecorator;
 use TypiCMS\Modules\Core\Services\Cache\CacheInterface;
 
@@ -21,7 +20,7 @@ class CacheDecorator extends CacheAbstractDecorator implements TranslationInterf
      */
     public function allToArray($locale, $group, $namespace = null)
     {
-        $cacheKey = md5(App::getLocale().'TranslationsToArray');
+        $cacheKey = md5(config('app.locale').'TranslationsToArray');
 
         if ($this->cache->has($cacheKey)) {
             return $this->cache->get($cacheKey);
