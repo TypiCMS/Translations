@@ -17,7 +17,7 @@ class SidebarViewComposer extends BaseSidebarViewComposer
                 $item->route('admin.translations.index');
                 $item->append('admin.translations.create');
                 $item->authorize(
-                    $this->user->hasAccess('translations.index')
+                    $this->auth->hasAccess('translations.index')
                 );
             });
         });
