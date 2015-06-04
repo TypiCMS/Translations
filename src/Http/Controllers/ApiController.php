@@ -1,7 +1,6 @@
 <?php
 namespace TypiCMS\Modules\Translations\Http\Controllers;
 
-use Response;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface as Repository;
 
@@ -15,11 +14,11 @@ class ApiController extends BaseApiController
     /**
      * Get models
      *
-     * @return Response
+     * @return \Illuminate\Support\Facades\Response
      */
     public function index()
     {
         $models = $this->repository->all([], true);
-        return Response::json($models, 200);
+        return response()->json($models, 200);
     }
 }
