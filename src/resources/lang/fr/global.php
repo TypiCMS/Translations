@@ -1,8 +1,9 @@
 <?php
-return array(
-    'name' => 'Traductions',
+
+return [
+    'name'         => 'Traductions',
     'translations' => 'traduction|traductions',
-    'New'  => 'Nouvelle traduction',
-    'Edit' => 'Modifier la traduction',
-    'Back' => 'Retour à la liste des traductions',
-);
+    'New'          => 'Nouvelle traduction',
+    'Edit'         => 'Modifier la traduction',
+    'Back'         => 'Retour à la liste des traductions',
+];

@@ -1,13 +1,13 @@
 <?php
+
 namespace TypiCMS\Modules\Translations\Repositories;
 
 use TypiCMS\Modules\Core\Repositories\RepositoryInterface;
 
 interface TranslationInterface extends RepositoryInterface
 {
-
     /**
-     * Get translations to Array
+     * Get translations to Array.
      *
      * @return array
      */

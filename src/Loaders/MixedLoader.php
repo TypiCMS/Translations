@@ -1,19 +1,21 @@
 <?php
+
 namespace TypiCMS\Modules\Translations\Loaders;
 
 use Illuminate\Translation\LoaderInterface;
 
 class MixedLoader implements LoaderInterface
 {
-
     /**
      *    The file loader.
+     *
      *    @var \Illuminate\Translation\FileLoader
      */
     protected $fileLoader;
 
     /**
      *    Repository.
+     *
      *    @var \TypiCMS\Modules\Translations\Repositories\TranslationInterface
      */
     protected $repository;
@@ -26,15 +28,16 @@ class MixedLoader implements LoaderInterface
      */
     public function __construct($fileLoader, $repository)
     {
-        $this->fileLoader     = $fileLoader;
-        $this->repository     = $repository;
+        $this->fileLoader = $fileLoader;
+        $this->repository = $repository;
     }
 
     /**
      * Load the messages strictly for the given locale.
      *
-     * @param  string   $group
-     * @param  string   $namespace
+     * @param string $group
+     * @param string $namespace
+     *
      * @return array
      */
     public function load($locale, $group, $namespace = null)
@@ -43,7 +46,7 @@ class MixedLoader implements LoaderInterface
         // Translations from files
         $translationsFromFiles = $this->fileLoader->load($locale, $group, $namespace);
         // If group is 'db', retrive also from DB.
-        $translationsFromDB = ($group == 'db') ? $this->loadFromDB($locale, $group, $namespace) : array() ;
+        $translationsFromDB = ($group == 'db') ? $this->loadFromDB($locale, $group, $namespace) : [];
 
         return array_merge($translationsFromFiles, $translationsFromDB);
     }
@@ -51,9 +54,10 @@ class MixedLoader implements LoaderInterface
     /**
      * Load the messages from DB strictly for the given locale.
      *
-     * @param  string   $group
-     * @param  string   $namespace
-     * @param  string   $locale
+     * @param string $group
+     * @param string $namespace
+     * @param string $locale
+     *
      * @return array
      */
     public function loadFromDB($locale, $group, $namespace = null)
@@ -64,8 +68,9 @@ class MixedLoader implements LoaderInterface
     /**
      * Add a new namespace to the loader.
      *
-     * @param  string $namespace
-     * @param  string $hint
+     * @param string $namespace
+     * @param string $hint
+     *
      * @return void
      */
     public function addNamespace($namespace, $hint)

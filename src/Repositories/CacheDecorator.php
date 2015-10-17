@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Translations\Repositories;
 
 use TypiCMS\Modules\Core\Repositories\CacheAbstractDecorator;
@@ -6,7 +7,6 @@ use TypiCMS\Modules\Core\Services\Cache\CacheInterface;
 
 class CacheDecorator extends CacheAbstractDecorator implements TranslationInterface
 {
-
     public function __construct(TranslationInterface $repo, CacheInterface $cache)
     {
         $this->repo = $repo;
@@ -14,7 +14,7 @@ class CacheDecorator extends CacheAbstractDecorator implements TranslationInterf
     }
 
     /**
-     * Get translations to Array
+     * Get translations to Array.
      *
      * @return array
      */

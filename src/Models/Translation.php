@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Translations\Models;
 
 use Dimsav\Translatable\Translatable;
@@ -8,33 +9,32 @@ use TypiCMS\Modules\History\Traits\Historable;
 
 class Translation extends Base
 {
-
     use Historable;
     use PresentableTrait;
     use Translatable;
 
     protected $presenter = 'TypiCMS\Modules\Translations\Presenters\ModulePresenter';
 
-    protected $fillable = array(
+    protected $fillable = [
         'group',
         'key',
         // Translatable columns
-        'translation'
-    );
+        'translation',
+    ];
 
     /**
      * Translatable model configs.
      *
      * @var array
      */
-    public $translatedAttributes = array(
-        'translation'
-    );
+    public $translatedAttributes = [
+        'translation',
+    ];
 
     protected $appends = ['translation'];
 
     /**
-     * Get translation attribute from translation table
+     * Get translation attribute from translation table.
      *
      * @return string
      */

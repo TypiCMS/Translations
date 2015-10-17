@@ -1,4 +1,5 @@
 <?php
+
 namespace TypiCMS\Modules\Translations\Repositories;
 
 use DB;
@@ -7,14 +8,13 @@ use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
 
 class EloquentTranslation extends RepositoriesAbstract implements TranslationInterface
 {
-
     public function __construct(Model $model)
     {
         $this->model = $model;
     }
 
     /**
-     * Get translations to Array
+     * Get translations to Array.
      *
      * @return array
      */
