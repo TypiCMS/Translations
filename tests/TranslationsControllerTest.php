@@ -1,9 +1,9 @@
 <?php
+
 use TypiCMS\Modules\Translations\Models\Translation;
 
 class TranslationsControllerTest extends TestCase
 {
-
     public function testAdminIndex()
     {
         $response = $this->call('GET', 'admin/translations');
@@ -20,22 +20,21 @@ class TranslationsControllerTest extends TestCase
 
     public function testStoreSuccess()
     {
-        $object = new Translation;
+        $object = new Translation();
         $object->id = 1;
         Translation::shouldReceive('create')->once()->andReturn($object);
-        $input = array('key' => 'test');
+        $input = ['key' => 'test'];
         $this->call('POST', 'admin/translations', $input);
-        $this->assertRedirectedToRoute('admin.translations.edit', array('id' => 1));
+        $this->assertRedirectedToRoute('admin.translations.edit', ['id' => 1]);
     }
 
     public function testStoreSuccessWithRedirectToList()
     {
-        $object = new Translation;
+        $object = new Translation();
         $object->id = 1;
         Translation::shouldReceive('create')->once()->andReturn($object);
-        $input = array('key' => 'test', 'exit' => true);
+        $input = ['key' => 'test', 'exit' => true];
         $this->call('POST', 'admin/translations', $input);
         $this->assertRedirectedToRoute('admin.translations.index');
     }
-
 }
