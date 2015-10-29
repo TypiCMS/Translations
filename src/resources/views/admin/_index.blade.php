@@ -35,9 +35,7 @@
                         @include('core::admin._button-edit')
                     </td>
                     <td>@{{ model.key }}</td>
-                    <td contentEditable highlighter="model.translation" ng-model="model.translation" ng-blur="update(model)">
-                        @{{ model.translation }}
-                    </td>
+                    <td>@{{ model.translation }}</td>
                 </tr>
             </tbody>
             <tfoot>
