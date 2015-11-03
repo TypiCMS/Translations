@@ -9,7 +9,7 @@ class FormRequest extends AbstractFormRequest
     public function rules()
     {
         $rules = [
-            'key' => 'required',
+            'key' => 'required|max:255',
         ];
 
         return $rules;
