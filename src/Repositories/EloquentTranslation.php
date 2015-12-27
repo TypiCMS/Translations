@@ -25,7 +25,7 @@ class EloquentTranslation extends RepositoriesAbstract implements TranslationInt
                 ->join('translation_translations', 'translations.id', '=', 'translation_translations.translation_id')
                 ->where('locale', $locale)
                 ->where('group', $group)
-                ->lists('translation', 'key');
+                ->pluck('translation', 'key');
 
         return $array;
     }
