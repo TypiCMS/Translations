@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Translations\Http\Controllers;
 
 use Illuminate\Support\Facades\Request;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
+use TypiCMS\Modules\Translations\Models\Translation;
 use TypiCMS\Modules\Translations\Repositories\TranslationInterface as Repository;
 
 class ApiController extends BaseApiController
@@ -48,12 +49,28 @@ class ApiController extends BaseApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($model)
+    public function update()
     {
-        $error = $this->repository->update(Request::all()) ? false : true;
+        $updated = $this->repository->update(Request::all());
 
         return response()->json([
-            'error' => $error,
-        ], 200);
+            'error' => !$updated,
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \TypiCMS\Modules\Translations\Models\Translation $translation
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Translation $translation)
+    {
+        $deleted = $this->repository->delete($translation);
+
+        return response()->json([
+            'error' => !$deleted,
+        ]);
     }
 }
