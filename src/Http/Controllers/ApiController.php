@@ -17,7 +17,7 @@ class ApiController extends BaseApiController
     /**
      * Get models.
      *
-     * @return \Illuminate\Support\Facades\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
