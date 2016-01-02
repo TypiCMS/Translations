@@ -17,20 +17,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'TypiCMS\Modules\Translations\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
-     */
-    public function boot(Router $router)
-    {
-        parent::boot($router);
-
-        $router->model('translations', 'TypiCMS\Modules\Translations\Models\Translation');
-    }
-
-    /**
      * Define the routes for the application.
      *
      * @param \Illuminate\Routing\Router $router
@@ -43,12 +29,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->resource('admin/translations', 'AdminController');
+            $router->get('admin/translations', ['as' => 'admin.translations.index', 'uses' => 'AdminController@index']);
+            $router->get('admin/translations/create', ['as' => 'admin.translations.create', 'uses' => 'AdminController@create']);
+            $router->get('admin/translations/{translation}/edit', ['as' => 'admin.translations.edit', 'uses' => 'AdminController@edit']);
+            $router->post('admin/translations', ['as' => 'admin.translations.store', 'uses' => 'AdminController@store']);
+            $router->put('admin/translations/{translation}', ['as' => 'admin.translations.update', 'uses' => 'AdminController@update']);
 
             /*
              * API routes
              */
-            $router->resource('api/translations', 'ApiController');
+            $router->get('api/translations', ['as' => 'api.translations.index', 'uses' => 'ApiController@index']);
+            $router->put('api/translations/{translation}', ['as' => 'api.translations.update', 'uses' => 'ApiController@update']);
+            $router->delete('api/translations/{translation}', ['as' => 'api.translations.destroy', 'uses' => 'ApiController@destroy']);
         });
     }
 }
