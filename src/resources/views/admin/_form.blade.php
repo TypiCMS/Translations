@@ -1,6 +1,6 @@
 @section('js')
     <script src="{{ asset('js/admin/form.js') }}"></script>
-@stop
+@endsection
 
 
 @include('core::admin._buttons-form')
