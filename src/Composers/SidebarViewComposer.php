@@ -5,9 +5,8 @@ namespace TypiCMS\Modules\Translations\Composers;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
-use TypiCMS\Modules\Core\Composers\BaseSidebarViewComposer;
 
-class SidebarViewComposer extends BaseSidebarViewComposer
+class SidebarViewComposer
 {
     public function compose(View $view)
     {
@@ -15,10 +14,10 @@ class SidebarViewComposer extends BaseSidebarViewComposer
             $group->addItem(trans('translations::global.name'), function (SidebarItem $item) {
                 $item->icon = config('typicms.translations.sidebar.icon', 'icon fa fa-fw fa-comments');
                 $item->weight = config('typicms.translations.sidebar.weight');
-                $item->route('admin.translations.index');
-                $item->append('admin.translations.create');
+                $item->route('admin::index-translations');
+                $item->append('admin::create-translations');
                 $item->authorize(
-                    $this->auth->hasAccess('translations.index')
+                    auth()->user()->can('index-translations')
                 );
             });
         });
