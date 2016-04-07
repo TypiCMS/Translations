@@ -16,7 +16,7 @@ class SidebarViewComposer
                 $item->icon = config('typicms.translations.sidebar.icon', 'icon fa fa-fw fa-comments');
                 $item->weight = config('typicms.translations.sidebar.weight');
                 $item->route('admin::index-translations');
-                $item->append('admin::create-translations');
+                $item->append('admin::create-translation');
                 $item->authorize(
                     Gate::allows('index-translations')
                 );
