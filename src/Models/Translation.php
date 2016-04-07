@@ -38,7 +38,7 @@ class Translation extends Base
      *
      * @return string
      */
-    public function getTranslationAttribute($value)
+    public function getTranslationAttribute()
     {
         return $this->translation;
     }
