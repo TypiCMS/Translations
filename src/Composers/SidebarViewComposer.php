@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Translations\Composers;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
 
@@ -17,7 +18,7 @@ class SidebarViewComposer
                 $item->route('admin::index-translations');
                 $item->append('admin::create-translations');
                 $item->authorize(
-                    auth()->user()->can('index-translations')
+                    Gate::allows('index-translations')
                 );
             });
         });
