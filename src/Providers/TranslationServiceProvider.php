@@ -12,7 +12,7 @@ class TranslationServiceProvider extends LaravelTranslationServiceProvider
     /**
      * Register the translation line loader.
      *
-     * @return void
+     * @return null
      */
     protected function registerLoader()
     {

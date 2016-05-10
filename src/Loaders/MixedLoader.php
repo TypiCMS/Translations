@@ -71,7 +71,7 @@ class MixedLoader implements LoaderInterface
      * @param string $namespace
      * @param string $hint
      *
-     * @return void
+     * @return null
      */
     public function addNamespace($namespace, $hint)
     {
