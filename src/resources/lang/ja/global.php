@@ -1,4 +1,5 @@
 <?php
+
 return [
     'name'         => '翻訳',
     'translations' => '翻訳|翻訳',
