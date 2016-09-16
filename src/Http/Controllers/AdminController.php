@@ -5,11 +5,11 @@ namespace TypiCMS\Modules\Translations\Http\Controllers;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Models\Translation;
-use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
+use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(TranslationInterface $translation)
+    public function __construct(EloquentTranslation $translation)
     {
         parent::__construct($translation);
     }

@@ -24,7 +24,7 @@ class MixedLoader implements LoaderInterface
     /**
      * Repository.
      *
-     * @var \TypiCMS\Modules\Translations\Repositories\TranslationInterface
+     * @var \TypiCMS\Modules\Translations\Repositories\EloquentTranslation
      */
     protected $repository;
 

@@ -15,7 +15,7 @@ class Translation extends Base
 
     protected $presenter = 'TypiCMS\Modules\Translations\Presenters\ModulePresenter';
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'exit'];
 
     public $translatable = [
         'translation',

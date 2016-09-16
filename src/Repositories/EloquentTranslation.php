@@ -2,16 +2,15 @@
 
 namespace TypiCMS\Modules\Translations\Repositories;
 
-use DB;
-use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
+use Illuminate\Support\Facades\DB;
+use TypiCMS\Modules\Core\EloquentRepository;
+use TypiCMS\Modules\Translations\Models\Translation;
 
-class EloquentTranslation extends RepositoriesAbstract implements TranslationInterface
+class EloquentTranslation extends EloquentRepository
 {
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
+    protected $repositoryId = 'translations';
+
+    protected $model = Translation::class;
 
     /**
      * Get translations to Array.

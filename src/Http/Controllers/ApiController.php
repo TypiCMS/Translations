@@ -5,11 +5,11 @@ namespace TypiCMS\Modules\Translations\Http\Controllers;
 use Illuminate\Support\Facades\Request;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Translations\Models\Translation;
-use TypiCMS\Modules\Translations\Repositories\TranslationInterface as Repository;
+use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class ApiController extends BaseApiController
 {
-    public function __construct(Repository $repository)
+    public function __construct(EloquentTranslation $repository)
     {
         parent::__construct($repository);
     }

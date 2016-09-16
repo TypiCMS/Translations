@@ -5,7 +5,7 @@ namespace TypiCMS\Modules\Translations\Providers;
 use Illuminate\Foundation\Application;
 use Illuminate\Translation\TranslationServiceProvider as LaravelTranslationServiceProvider;
 use TypiCMS\Modules\Translations\Loaders\MixedLoader;
-use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
+use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class TranslationServiceProvider extends LaravelTranslationServiceProvider
 {
@@ -17,7 +17,7 @@ class TranslationServiceProvider extends LaravelTranslationServiceProvider
     protected function registerLoader()
     {
         $this->app->singleton('translation.loader', function (Application $app) {
-            $repository = $app->make(TranslationInterface::class);
+            $repository = new EloquentTranslation();
 
             return new MixedLoader(new \Illuminate\Filesystem\Filesystem(), $app['path.lang'], $repository);
         });

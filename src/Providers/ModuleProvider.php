@@ -4,9 +4,7 @@ namespace TypiCMS\Modules\Translations\Providers;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 use TypiCMS\Modules\Translations\Models\Translation;
-use TypiCMS\Modules\Translations\Repositories\CacheDecorator;
 use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class ModuleProvider extends ServiceProvider
@@ -45,16 +43,6 @@ class ModuleProvider extends ServiceProvider
          */
         $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Translations\Composers\SidebarViewComposer');
 
-        $app->bind('TypiCMS\Modules\Translations\Repositories\TranslationInterface', function (Application $app) {
-            $repository = new EloquentTranslation(
-                new Translation()
-            );
-            if (!config('typicms.cache')) {
-                return $repository;
-            }
-            $laravelCache = new LaravelCache($app['cache'], 'translations', 10);
-
-            return new CacheDecorator($repository, $laravelCache);
-        });
+        $app->bind('Translations', EloquentTranslation::class);
     }
 }
