@@ -38,8 +38,8 @@ class MixedLoader implements LoaderInterface
     /**
      * Create a new file loader instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  string  $path
+     * @param \Illuminate\Filesystem\Filesystem $files
+     * @param string                            $path
      *
      * @return null
      */
@@ -53,9 +53,9 @@ class MixedLoader implements LoaderInterface
     /**
      * Load the messages strictly for the given locale.
      *
-     * @param  string  $locale
-     * @param  string  $group
-     * @param  string  $namespace
+     * @param string $locale
+     * @param string $group
+     * @param string $namespace
      *
      * @return array
      */
@@ -76,9 +76,10 @@ class MixedLoader implements LoaderInterface
     /**
      * Load a locale from a given path.
      *
-     * @param  string  $path
-     * @param  string  $locale
-     * @param  string  $group
+     * @param string $path
+     * @param string $locale
+     * @param string $group
+     *
      * @return array
      */
     protected function loadPath($path, $locale, $group)
@@ -93,9 +94,10 @@ class MixedLoader implements LoaderInterface
     /**
      * Load a namespaced translation group.
      *
-     * @param  string  $locale
-     * @param  string  $group
-     * @param  string  $namespace
+     * @param string $locale
+     * @param string $group
+     * @param string $namespace
+     *
      * @return array
      */
     protected function loadNamespaced($locale, $group, $namespace)
@@ -112,10 +114,11 @@ class MixedLoader implements LoaderInterface
     /**
      * Load a local namespaced translation group for overrides.
      *
-     * @param  array  $lines
-     * @param  string  $locale
-     * @param  string  $group
-     * @param  string  $namespace
+     * @param array  $lines
+     * @param string $locale
+     * @param string $group
+     * @param string $namespace
+     *
      * @return array
      */
     protected function loadNamespaceOverrides(array $lines, $locale, $group, $namespace)
@@ -146,8 +149,9 @@ class MixedLoader implements LoaderInterface
     /**
      * Add a new namespace to the loader.
      *
-     * @param  string  $namespace
-     * @param  string  $hint
+     * @param string $namespace
+     * @param string $hint
+     *
      * @return void
      */
     public function addNamespace($namespace, $hint)
