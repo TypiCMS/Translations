@@ -28,18 +28,22 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/translations', 'AdminController@index')->name('admin::index-translations');
-            $router->get('admin/translations/create', 'AdminController@create')->name('admin::create-translation');
-            $router->get('admin/translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
-            $router->post('admin/translations', 'AdminController@store')->name('admin::store-translation');
-            $router->put('admin/translations/{translation}', 'AdminController@update')->name('admin::update-translation');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+                $router->get('translations', 'AdminController@index')->name('admin::index-translations');
+                $router->get('translations/create', 'AdminController@create')->name('admin::create-translation');
+                $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
+                $router->post('translations', 'AdminController@store')->name('admin::store-translation');
+                $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation');
+            });
 
             /*
              * API routes
              */
-            $router->get('api/translations', 'ApiController@index')->name('api::index-translations');
-            $router->put('api/translations/{translation}', 'ApiController@update')->name('api::update-translation');
-            $router->delete('api/translations/{translation}', 'ApiController@destroy')->name('api::destroy-translation');
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+                $router->get('translations', 'ApiController@index')->name('api::index-translations');
+                $router->put('translations/{translation}', 'ApiController@update')->name('api::update-translation');
+                $router->delete('translations/{translation}', 'ApiController@destroy')->name('api::destroy-translation');
+            });
         });
     }
 }

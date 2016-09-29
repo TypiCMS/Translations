@@ -3,7 +3,7 @@
 namespace TypiCMS\Modules\Translations\Repositories;
 
 use Illuminate\Support\Facades\DB;
-use TypiCMS\Modules\Core\EloquentRepository;
+use TypiCMS\Modules\Core\Repositories\EloquentRepository;
 use TypiCMS\Modules\Translations\Models\Translation;
 
 class EloquentTranslation extends EloquentRepository
