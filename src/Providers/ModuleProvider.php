@@ -2,9 +2,7 @@
 
 namespace TypiCMS\Modules\Translations\Providers;
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Translations\Models\Translation;
 use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class ModuleProvider extends ServiceProvider
