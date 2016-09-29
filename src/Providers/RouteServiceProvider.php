@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
                 $router->get('translations', 'AdminController@index')->name('admin::index-translations');
                 $router->get('translations/create', 'AdminController@create')->name('admin::create-translation');
                 $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * API routes
              */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
                 $router->get('translations', 'ApiController@index')->name('api::index-translations');
                 $router->put('translations/{translation}', 'ApiController@update')->name('api::update-translation');
                 $router->delete('translations/{translation}', 'ApiController@destroy')->name('api::destroy-translation');
