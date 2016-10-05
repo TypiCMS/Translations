@@ -34,15 +34,8 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
                 $router->post('translations', 'AdminController@store')->name('admin::store-translation');
                 $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation');
-            });
-
-            /*
-             * API routes
-             */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
-                $router->get('translations', 'ApiController@index')->name('api::index-translations');
-                $router->put('translations/{translation}', 'ApiController@update')->name('api::update-translation');
-                $router->delete('translations/{translation}', 'ApiController@destroy')->name('api::destroy-translation');
+                $router->patch('translations/{translation}', 'AdminController@ajaxUpdate');
+                $router->delete('translations/{translation}', 'AdminController@destroy')->name('admin::destroy-translation');
             });
         });
     }

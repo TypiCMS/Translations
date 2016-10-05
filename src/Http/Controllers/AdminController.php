@@ -77,8 +77,24 @@ class AdminController extends BaseAdminController
      */
     public function update(Translation $translation, FormRequest $request)
     {
-        $this->repository->update(request('id'), $request->all());
+        $this->repository->update($request->id, $request->all());
 
         return $this->redirect($request, $translation);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \TypiCMS\Modules\Translations\Models\Translation $translation
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Translation $translation)
+    {
+        $deleted = $this->repository->delete($translation);
+
+        return response()->json([
+            'error' => !$deleted,
+        ]);
     }
 }
