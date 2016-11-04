@@ -18,8 +18,6 @@ class Translation extends Base
     protected $fillable = [
         'group',
         'key',
-        // Translatable columns
-        'translation',
     ];
 
     /**
@@ -38,8 +36,8 @@ class Translation extends Base
      *
      * @return string
      */
-    public function getTranslationAttribute()
+    public function getTranslationAttribute($value)
     {
-        return $this->translation;
+        return $value;
     }
 }

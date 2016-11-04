@@ -6,6 +6,10 @@ use TypiCMS\Modules\Core\Models\BaseTranslation;
 
 class TranslationTranslation extends BaseTranslation
 {
+    protected $fillable = [
+        'translation',
+    ];
+
     /**
      * get the parent model.
      */
