@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name'         => 'Translations',
+    'name' => 'Translations',
     'translations' => 'translation|translations',
-    'New'          => 'New translation',
-    'Edit'         => 'Edit translation',
-    'Back'         => 'Back to translations',
+    'New' => 'New translation',
+    'Edit' => 'Edit translation',
+    'Back' => 'Back to translations',
 ];
