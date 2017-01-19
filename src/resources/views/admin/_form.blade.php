@@ -6,12 +6,13 @@
 {!! BootForm::text(trans('validation.attributes.key'), 'key') !!}
 
 <label class="control-label">@lang('validation.attributes.translations')</label>
+
 @foreach ($locales as $lang)
-    <div class="form-group @if($errors->has($lang.'.translation'))has-error @endif">
+    <div class="form-group @if($errors->has('translation.'.$lang))has-error @endif">
         <div class="input-group">
             <span class="input-group-addon">{{ strtoupper($lang) }}</span>
-            {!! Form::text($lang.'[translation]')->addClass('form-control') !!}
+            {!! Form::text('translation['.$lang.']')->addClass('form-control') !!}
         </div>
-        {!! $errors->first($lang.'.translation', '<p class="help-block">:message</p>') !!}
+        {!! $errors->first('translation.'.$lang, '<p class="help-block">:message</p>') !!}
     </div>
 @endforeach
