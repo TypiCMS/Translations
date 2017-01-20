@@ -3,7 +3,7 @@
 {!! BootForm::hidden('id') !!}
 {!! BootForm::hidden('group')->value('db') !!}
 
-{!! BootForm::text(trans('validation.attributes.key'), 'key') !!}
+{!! BootForm::text(__('validation.attributes.key'), 'key') !!}
 
 <label class="control-label">@lang('validation.attributes.translations')</label>
 
