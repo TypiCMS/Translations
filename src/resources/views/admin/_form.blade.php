@@ -3,9 +3,9 @@
 {!! BootForm::hidden('id') !!}
 {!! BootForm::hidden('group')->value('db') !!}
 
-{!! BootForm::text(__('validation.attributes.key'), 'key') !!}
+{!! BootForm::text(__('Key'), 'key') !!}
 
-<label class="control-label">@lang('validation.attributes.translations')</label>
+<label class="control-label">{{ __('Translations') }}</label>
 
 @foreach ($locales as $lang)
     <div class="form-group @if($errors->has('translation.'.$lang))has-error @endif">
