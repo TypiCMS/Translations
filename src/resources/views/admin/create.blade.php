@@ -2,7 +2,7 @@
 
 @section('title', __('translations::global.New'))
 
-@section('main')
+@section('content')
 
     @include('core::admin._button-back', ['module' => 'translations'])
     <h1>
