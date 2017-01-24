@@ -21,8 +21,8 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="key" st-sort-default="true" class="key st-sort">@lang('Key')</th>
-                    <th st-sort="translation" class="translation st-sort">@lang('Translation')</th>
+                    <th st-sort="key" st-sort-default="true" class="key st-sort">{{ __('Key') }}</th>
+                    <th st-sort="translation" class="translation st-sort">{{ __('Translation') }}</th>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
