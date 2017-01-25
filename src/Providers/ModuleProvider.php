@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Translations\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use TypiCMS\Modules\Translations\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class ModuleProvider extends ServiceProvider
@@ -34,12 +35,12 @@ class ModuleProvider extends ServiceProvider
         /*
          * Register route service provider
          */
-        $app->register('TypiCMS\Modules\Translations\Providers\RouteServiceProvider');
+        $app->register(RouteServiceProvider::class);
 
         /*
          * Sidebar view composer
          */
-        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Translations\Composers\SidebarViewComposer');
+        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
 
         $app->bind('Translations', EloquentTranslation::class);
     }
