@@ -42,7 +42,7 @@
                         @include('core::admin._button-edit', ['module' => 'translations'])
                     </td>
                     <td>@{{ model.key }}</td>
-                    <td>@{{ model.translation }}</td>
+                    <td>@{{ model.translation | translated }}</td>
                 </tr>
             </tbody>
             <tfoot>
