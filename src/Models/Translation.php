@@ -17,7 +17,20 @@ class Translation extends Base
 
     protected $guarded = ['id', 'exit'];
 
+    protected $appends = ['translation_translated'];
+
     public $translatable = [
         'translation',
     ];
+
+    /**
+     * Append translation_translated attribute.
+     *
+     * @return string
+     */
+    public function getTranslationTranslatedAttribute()
+    {
+        $locale = config('app.locale');
+        return $this->translate('translation', config('typicms.content_locale', $locale));
+    }
 }

@@ -22,7 +22,7 @@
                     <th class="delete"></th>
                     <th class="edit"></th>
                     <th st-sort="key" st-sort-default="true" class="key st-sort">{{ __('Key') }}</th>
-                    <th st-sort="translation" class="translation st-sort">{{ __('Translation') }}</th>
+                    <th st-sort="translation_translated" class="translation st-sort">{{ __('Translation') }}</th>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
@@ -30,7 +30,7 @@
                         <input st-search="key" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                     <td>
-                        <input st-search="translation" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
+                        <input st-search="translation_translated" class="form-control input-sm" placeholder="@lang('Search')…" type="text">
                     </td>
                 </tr>
             </thead>
@@ -42,7 +42,7 @@
                         @include('core::admin._button-edit', ['module' => 'translations'])
                     </td>
                     <td>@{{ model.key }}</td>
-                    <td>@{{ model.translation | translated }}</td>
+                    <td>@{{ model.translation_translated }}</td>
                 </tr>
             </tbody>
             <tfoot>
