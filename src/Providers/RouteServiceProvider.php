@@ -34,8 +34,8 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
                 $router->post('translations', 'AdminController@store')->name('admin::store-translation');
                 $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation');
-                $router->patch('translations/{translation}', 'AdminController@ajaxUpdate');
-                $router->delete('translations/{translation}', 'AdminController@destroy')->name('admin::destroy-translation');
+                $router->patch('translations/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-translation');
+                $router->delete('translations/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-translation');
             });
         });
     }
