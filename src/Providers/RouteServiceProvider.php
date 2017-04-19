@@ -29,13 +29,13 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
-                $router->get('translations', 'AdminController@index')->name('admin::index-translations');
-                $router->get('translations/create', 'AdminController@create')->name('admin::create-translation');
-                $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
-                $router->post('translations', 'AdminController@store')->name('admin::store-translation');
-                $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation');
-                $router->patch('translations/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-translation-ajax');
-                $router->delete('translations/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-translation');
+                $router->get('translations', 'AdminController@index')->name('admin::index-translations')->middleware('can:see-all-translations');
+                $router->get('translations/create', 'AdminController@create')->name('admin::create-translation')->middleware('can:create-translation');
+                $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation')->middleware('can:update-translation');
+                $router->post('translations', 'AdminController@store')->name('admin::store-translation')->middleware('can:create-translation');
+                $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation')->middleware('can:update-translation');
+                $router->patch('translations/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-translation-ajax')->middleware('can:update-translation');
+                $router->delete('translations/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-translation')->middleware('can:delete-translation');
             });
         });
     }
