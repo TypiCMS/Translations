@@ -4,7 +4,7 @@
 {!! BootForm::hidden('id') !!}
 {!! BootForm::hidden('group')->value('db') !!}
 
-{!! BootForm::text(__('Key'), 'key') !!}
+{!! BootForm::text(__('Key'), 'key')->required() !!}
 
 <label class="control-label">{{ __('Translations') }}</label>
 
