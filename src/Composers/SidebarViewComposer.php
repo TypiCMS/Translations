@@ -17,7 +17,7 @@ class SidebarViewComposer
         $view->sidebar->group(__('Content'), function (SidebarGroup $group) {
             $group->id = 'content';
             $group->weight = 30;
-            $group->addItem(__('translations::global.name'), function (SidebarItem $item) {
+            $group->addItem(__('Translations'), function (SidebarItem $item) {
                 $item->id = 'translations';
                 $item->icon = config('typicms.translations.sidebar.icon', 'icon fa fa-fw fa-comments');
                 $item->weight = config('typicms.translations.sidebar.weight');

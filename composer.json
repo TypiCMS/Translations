@@ -16,6 +16,14 @@
             "TypiCMS\\Modules\\Translations\\": "src/"
         }
     },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan translations:add /vendor/typicms/Translations/src/resources/lang"
+        ],
+        "post-update-cmd": [
+            "php artisan translations:add /vendor/typicms/Translations/src/resources/lang"
+        ]
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }

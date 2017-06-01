@@ -9,7 +9,7 @@
 <label class="control-label">{{ __('Translations') }}</label>
 
 @foreach ($locales as $lang)
-    <div class="form-group @if($errors->has('translation.'.$lang))has-error @endif">
+    <div class="form-group @if ($errors->has('translation.'.$lang))has-error @endif">
         <div class="input-group">
             <span class="input-group-addon">{{ strtoupper($lang) }}</span>
             {!! Form::text('translation['.$lang.']')->addClass('form-control') !!}
