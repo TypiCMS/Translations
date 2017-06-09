@@ -16,6 +16,13 @@
             "TypiCMS\\Modules\\Translations\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TypiCMS\\Modules\\Translations\\Providers\\ModuleProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
