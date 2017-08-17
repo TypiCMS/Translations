@@ -42,7 +42,7 @@ class MixedLoader extends FileLoader
     {
         // Load from files
         if ($group == '*' && $namespace == '*') {
-            return $this->loadJsonPath($this->path, $locale);
+            return $this->loadJsonPaths($locale);
         }
         if (is_null($namespace) || $namespace == '*') {
             $translationsFromFiles = $this->loadPath($this->path, $locale, $group);
