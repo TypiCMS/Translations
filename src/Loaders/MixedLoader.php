@@ -2,39 +2,37 @@
 
 namespace TypiCMS\Modules\Translations\Loaders;
 
-use Illuminate\Translation\LoaderInterface;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Translation\FileLoader;
 
-class MixedLoader implements LoaderInterface
+class MixedLoader extends FileLoader
 {
     /**
-     *    The file loader.
+     * Repository.
      *
-     *    @var \Illuminate\Translation\FileLoader
-     */
-    protected $fileLoader;
-
-    /**
-     *    Repository.
-     *
-     *    @var \TypiCMS\Modules\Translations\Repositories\TranslationInterface
+     * @var \TypiCMS\Modules\Translations\Repositories\EloquentTranslation
      */
     protected $repository;
 
     /**
-     *     Create a new mixed loader instance.
+     * Create a new file loader instance.
      *
-     *    @param     \Illuminate\Translation\FileLoader $fileLoader
-     *    @param     \TypiCMS\Modules\Translations\Repositories\TranslationInterface $repository
+     * @param \Illuminate\Filesystem\Filesystem $files
+     * @param string                            $path
+     *
+     * @return null
      */
-    public function __construct($fileLoader, $repository)
+    public function __construct(Filesystem $files, $path, $repository)
     {
-        $this->fileLoader = $fileLoader;
+        $this->path = $path;
+        $this->files = $files;
         $this->repository = $repository;
     }
 
     /**
      * Load the messages strictly for the given locale.
      *
+     * @param string $locale
      * @param string $group
      * @param string $namespace
      *
@@ -42,10 +40,17 @@ class MixedLoader implements LoaderInterface
      */
     public function load($locale, $group, $namespace = null)
     {
-        $namespace = $namespace ?: '*';
-        // Translations from files
-        $translationsFromFiles = $this->fileLoader->load($locale, $group, $namespace);
-        // If group is 'db', retrive also from DB.
+        // Load from files
+        if ($group == '*' && $namespace == '*') {
+            return $this->loadJsonPaths($locale);
+        }
+        if (is_null($namespace) || $namespace == '*') {
+            $translationsFromFiles = $this->loadPath($this->path, $locale, $group);
+        } else {
+            $translationsFromFiles = $this->loadNamespaced($locale, $group, $namespace);
+        }
+
+        // If group is 'db', get data from DB.
         $translationsFromDB = ($group == 'db') ? $this->loadFromDB($locale, $group, $namespace) : [];
 
         return array_merge($translationsFromFiles, $translationsFromDB);
@@ -63,19 +68,5 @@ class MixedLoader implements LoaderInterface
     public function loadFromDB($locale, $group, $namespace = null)
     {
         return $this->repository->allToArray($locale, $group, $namespace);
-    }
-
-    /**
-     * Add a new namespace to the loader.
-     *
-     * @param string $namespace
-     * @param string $hint
-     *
-     * @return void
-     */
-    public function addNamespace($namespace, $hint)
-    {
-        $this->hints[$namespace] = $hint;
-        $this->fileLoader->addNamespace($namespace, $hint);
     }
 }

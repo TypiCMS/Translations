@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Translations\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,28 +20,23 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
+     * @return null
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->group(['namespace' => $this->namespace], function (Router $router) {
+        Route::group(['namespace' => $this->namespace], function (Router $router) {
             /*
              * Admin routes
              */
-            $router->get('admin/translations', 'AdminController@index')->name('admin::index-translations');
-            $router->get('admin/translations/create', 'AdminController@create')->name('admin::create-translation');
-            $router->get('admin/translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation');
-            $router->post('admin/translations', 'AdminController@store')->name('admin::store-translation');
-            $router->put('admin/translations/{translation}', 'AdminController@update')->name('admin::update-translation');
-
-            /*
-             * API routes
-             */
-            $router->get('api/translations', 'ApiController@index')->name('api::index-translations');
-            $router->put('api/translations/{translation}', 'ApiController@update')->name('api::update-translation');
-            $router->delete('api/translations/{translation}', 'ApiController@destroy')->name('api::destroy-translation');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
+                $router->get('translations', 'AdminController@index')->name('admin::index-translations')->middleware('can:see-all-translations');
+                $router->get('translations/create', 'AdminController@create')->name('admin::create-translation')->middleware('can:create-translation');
+                $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation')->middleware('can:update-translation');
+                $router->post('translations', 'AdminController@store')->name('admin::store-translation')->middleware('can:create-translation');
+                $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation')->middleware('can:update-translation');
+                $router->patch('translations/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-translation-ajax')->middleware('can:update-translation');
+                $router->delete('translations/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-translation')->middleware('can:delete-translation');
+            });
         });
     }
 }

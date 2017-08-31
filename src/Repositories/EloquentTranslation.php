@@ -2,16 +2,15 @@
 
 namespace TypiCMS\Modules\Translations\Repositories;
 
-use DB;
-use Illuminate\Database\Eloquent\Model;
-use TypiCMS\Modules\Core\Repositories\RepositoriesAbstract;
+use Illuminate\Support\Facades\DB;
+use TypiCMS\Modules\Core\Repositories\EloquentRepository;
+use TypiCMS\Modules\Translations\Models\Translation;
 
-class EloquentTranslation extends RepositoriesAbstract implements TranslationInterface
+class EloquentTranslation extends EloquentRepository
 {
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
+    protected $repositoryId = 'translations';
+
+    protected $model = Translation::class;
 
     /**
      * Get translations to Array.
@@ -21,11 +20,10 @@ class EloquentTranslation extends RepositoriesAbstract implements TranslationInt
     public function allToArray($locale, $group, $namespace = null)
     {
         $array = DB::table('translations')
-                ->select('translation', 'key')
-                ->join('translation_translations', 'translations.id', '=', 'translation_translations.translation_id')
-                ->where('locale', $locale)
+                ->select(DB::raw("translation->>'$.".$locale."' AS translation"), 'key')
                 ->where('group', $group)
-                ->pluck('translation', 'key');
+                ->pluck('translation', 'key')
+                ->all();
 
         return $array;
     }

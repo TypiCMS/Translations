@@ -2,42 +2,36 @@
 
 namespace TypiCMS\Modules\Translations\Models;
 
-use Dimsav\Translatable\Translatable;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
+use TypiCMS\Modules\Translations\Presenters\ModulePresenter;
 
 class Translation extends Base
 {
+    use HasTranslations;
     use Historable;
     use PresentableTrait;
-    use Translatable;
 
-    protected $presenter = 'TypiCMS\Modules\Translations\Presenters\ModulePresenter';
+    protected $presenter = ModulePresenter::class;
 
-    protected $fillable = [
-        'group',
-        'key',
-    ];
+    protected $guarded = ['id', 'exit'];
 
-    /**
-     * Translatable model configs.
-     *
-     * @var array
-     */
-    public $translatedAttributes = [
+    protected $appends = ['translation_translated'];
+
+    public $translatable = [
         'translation',
     ];
 
-    protected $appends = ['translation'];
-
     /**
-     * Get translation attribute from translation table.
+     * Append translation_translated attribute.
      *
      * @return string
      */
-    public function getTranslationAttribute($value)
+    public function getTranslationTranslatedAttribute()
     {
-        return $value;
+        $locale = config('app.locale');
+        return $this->translate('translation', config('typicms.content_locale', $locale));
     }
 }

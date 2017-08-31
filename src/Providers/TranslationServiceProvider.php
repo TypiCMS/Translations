@@ -3,24 +3,23 @@
 namespace TypiCMS\Modules\Translations\Providers;
 
 use Illuminate\Foundation\Application;
-use Illuminate\Translation\FileLoader;
 use Illuminate\Translation\TranslationServiceProvider as LaravelTranslationServiceProvider;
 use TypiCMS\Modules\Translations\Loaders\MixedLoader;
+use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class TranslationServiceProvider extends LaravelTranslationServiceProvider
 {
     /**
      * Register the translation line loader.
      *
-     * @return void
+     * @return null
      */
     protected function registerLoader()
     {
         $this->app->singleton('translation.loader', function (Application $app) {
-            $repository = $app->make('TypiCMS\Modules\Translations\Repositories\TranslationInterface');
-            $fileLoader = new FileLoader($app['files'], $app['path.lang']);
+            $repository = new EloquentTranslation();
 
-            return new MixedLoader($fileLoader, $repository);
+            return new MixedLoader($app['files'], $app['path.lang'], $repository);
         });
     }
 }

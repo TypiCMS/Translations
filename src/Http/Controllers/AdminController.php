@@ -5,11 +5,11 @@ namespace TypiCMS\Modules\Translations\Http\Controllers;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Models\Translation;
-use TypiCMS\Modules\Translations\Repositories\TranslationInterface;
+use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(TranslationInterface $translation)
+    public function __construct(EloquentTranslation $translation)
     {
         parent::__construct($translation);
     }
@@ -21,7 +21,7 @@ class AdminController extends BaseAdminController
      */
     public function index()
     {
-        $models = $this->repository->all([], true);
+        $models = $this->repository->findAll();
         app('JavaScript')->put('models', $models);
 
         return view('translations::admin.index');
@@ -34,7 +34,7 @@ class AdminController extends BaseAdminController
      */
     public function create()
     {
-        $model = $this->repository->getModel();
+        $model = $this->repository->createModel();
 
         return view('translations::admin.create')
             ->with(compact('model'));
@@ -77,8 +77,24 @@ class AdminController extends BaseAdminController
      */
     public function update(Translation $translation, FormRequest $request)
     {
-        $this->repository->update($request->all());
+        $this->repository->update($request->id, $request->all());
 
         return $this->redirect($request, $translation);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \TypiCMS\Modules\Translations\Models\Translation $translation
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Translation $translation)
+    {
+        $deleted = $this->repository->delete($translation);
+
+        return response()->json([
+            'error' => !$deleted,
+        ]);
     }
 }
