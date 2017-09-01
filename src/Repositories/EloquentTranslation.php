@@ -19,12 +19,17 @@ class EloquentTranslation extends EloquentRepository
      */
     public function allToArray($locale, $group, $namespace = null)
     {
-        $array = DB::table('translations')
-                ->select(DB::raw("translation->>'$.".$locale."' AS translation"), 'key')
-                ->where('group', $group)
-                ->pluck('translation', 'key')
-                ->all();
+        $args = func_get_args();
+        $args[] = config('app.locale');
 
-        return $array;
+        return $this->executeCallback(get_called_class(), __FUNCTION__, $args, function () use ($locale, $group) {
+            $array = DB::table('translations')
+                    ->select(DB::raw("translation->>'$.".$locale."' AS translation"), 'key')
+                    ->where('group', $group)
+                    ->pluck('translation', 'key')
+                    ->all();
+
+            return $array;
+        });
     }
 }
