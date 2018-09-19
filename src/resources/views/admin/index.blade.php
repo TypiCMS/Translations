@@ -4,60 +4,39 @@
 
 @section('content')
 
-<div ng-cloak ng-controller="ListController">
+<item-list
+    url-base="{{ route('api::index-translations') }}"
+    locale="{{ config('typicms.content_locale') }}"
+    fields="id,key"
+    translatable-fields="translation"
+    table="translations"
+    title="translations"
+    :publishable="false"
+    :searchable="['id']"
+    :sorting="['key']">
 
-    @include('core::admin._button-create', ['module' => 'translations'])
+    <template slot="add-button">
+        @include('core::admin._button-create', ['module' => 'translations'])
+    </template>
 
-    <h1>@lang('Translations')</h1>
-
-    <div class="btn-toolbar">
-        @include('core::admin._button-select')
-        @include('core::admin._button-actions', ['only' => ['delete']])
+    <template slot="buttons">
         @include('core::admin._lang-switcher-for-list')
-    </div>
+    </template>
 
-    <div class="table-responsive">
+    <template slot="columns" slot-scope="{ sortArray }">
+        <item-list-column-header name="checkbox"></item-list-column-header>
+        <item-list-column-header name="edit"></item-list-column-header>
+        <item-list-column-header name="key" sortable :sort-array="sortArray" :label="$t('Key')"></item-list-column-header>
+        <item-list-column-header name="translation_translated" sortable :sort-array="sortArray" :label="$t('Translation')"></item-list-column-header>
+    </template>
 
-        <table st-persist="translationsTable" st-table="displayedModels" st-safe-src="models" st-order st-filter class="table table-main">
-            <thead>
-                <tr>
-                    <th class="delete"></th>
-                    <th class="edit"></th>
-                    <th st-sort="key" st-sort-default="true" class="key st-sort">{{ __('Key') }}</th>
-                    <th st-sort="translation_translated" class="translation st-sort">{{ __('Translation') }}</th>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td>
-                        <input st-search="key" class="form-control form-control-sm" placeholder="@lang('Filter')…" type="text">
-                    </td>
-                    <td>
-                        <input st-search="translation_translated" class="form-control form-control-sm" placeholder="@lang('Filter')…" type="text">
-                    </td>
-                </tr>
-            </thead>
+    <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
+        <td class="checkbox"><item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox></td>
+        <td>@include('core::admin._button-edit', ['module' => 'translations'])</td>
+        <td>@{{ model.key }}</td>
+        <td>@{{ model.translation_translated }}</td>
+    </template>
 
-            <tbody>
-                <tr ng-repeat="model in displayedModels">
-                    <td>
-                        <input type="checkbox" checklist-model="checked.models" checklist-value="model">
-                    </td>
-                    <td>
-                        @include('core::admin._button-edit', ['module' => 'translations'])
-                    </td>
-                    <td>@{{ model.key }}</td>
-                    <td>@{{ model.translation_translated }}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4" typi-pagination></td>
-                </tr>
-            </tfoot>
-        </table>
-
-    </div>
-
-</div>
+</item-list>
 
 @endsection
