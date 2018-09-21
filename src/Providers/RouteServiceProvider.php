@@ -41,9 +41,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('translations', 'ApiController@index')->name('api::index-translations')->middleware('can:see-all-translations');
-                    $router->patch('translations/{translation}', 'ApiController@updatePartial')->name('api::update-translation')->middleware('can:update-translation');
-                    $router->delete('translations/{translation}', 'ApiController@destroy')->name('api::destroy-translation')->middleware('can:delete-translation');
+                    $router->get('translations', 'ApiController@index')->middleware('can:see-all-translations');
+                    $router->patch('translations/{translation}', 'ApiController@updatePartial')->middleware('can:update-translation');
+                    $router->delete('translations/{translation}', 'ApiController@destroy')->middleware('can:delete-translation');
                 });
             });
         });
