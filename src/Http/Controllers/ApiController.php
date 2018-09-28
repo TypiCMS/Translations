@@ -17,11 +17,11 @@ class ApiController extends BaseApiController
 
     public function index(Request $request)
     {
-        $models = QueryBuilder::for(Translation::class)
+        $data = QueryBuilder::for(Translation::class)
             ->translated($request->input('translatable_fields'))
             ->paginate($request->input('per_page'));
 
-        return $models;
+        return $data;
     }
 
     public function destroy(Translation $translation)
