@@ -25,7 +25,7 @@ class ModuleProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/translations'),
-        ], 'typicms-views');
+        ], 'views');
 
         /*
          * Sidebar view composer
