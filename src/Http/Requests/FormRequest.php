@@ -10,7 +10,6 @@ class FormRequest extends AbstractFormRequest
     {
         $rules = [
             'key' => 'required|max:255',
-            'translation.*' => 'max:255',
         ];
 
         return $rules;
