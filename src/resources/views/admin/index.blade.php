@@ -12,7 +12,7 @@
     table="translations"
     title="translations"
     :publishable="false"
-    :searchable="['id']"
+    :searchable="['key,translation']"
     :sorting="['key']">
 
     <template slot="add-button">
