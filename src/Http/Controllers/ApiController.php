@@ -8,15 +8,9 @@ use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Translations\Models\Translation;
-use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class ApiController extends BaseApiController
 {
-    public function __construct(EloquentTranslation $translation)
-    {
-        parent::__construct($translation);
-    }
-
     public function index(Request $request)
     {
         $data = QueryBuilder::for(Translation::class)
@@ -31,7 +25,7 @@ class ApiController extends BaseApiController
 
     public function destroy(Translation $translation)
     {
-        $deleted = $this->repository->delete($translation);
+        $deleted = $translation->delete();
 
         return response()->json([
             'error' => !$deleted,

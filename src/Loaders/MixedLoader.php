@@ -3,17 +3,12 @@
 namespace TypiCMS\Modules\Translations\Loaders;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Translation\FileLoader;
+use TypiCMS\Modules\Translations\Models\Translation;
 
 class MixedLoader extends FileLoader
 {
-    /**
-     * Repository.
-     *
-     * @var \TypiCMS\Modules\Translations\Repositories\EloquentTranslation
-     */
-    protected $repository;
-
     /**
      * Create a new file loader instance.
      *
@@ -22,11 +17,10 @@ class MixedLoader extends FileLoader
      *
      * @return null
      */
-    public function __construct(Filesystem $files, $path, $repository)
+    public function __construct(Filesystem $files, $path)
     {
         $this->path = $path;
         $this->files = $files;
-        $this->repository = $repository;
     }
 
     /**
@@ -67,6 +61,10 @@ class MixedLoader extends FileLoader
      */
     public function loadFromDB($locale, $group, $namespace = null)
     {
-        return $this->repository->allToArray($locale, $group, $namespace);
+        return DB::table('translations')
+                ->select(DB::raw("JSON_UNQUOTE(JSON_EXTRACT(`translation`, '$.".$locale."')) AS translation"), 'key')
+                ->where('group', $group)
+                ->pluck('translation', 'key')
+                ->all();
     }
 }

@@ -42,6 +42,6 @@ class ModuleProvider extends ServiceProvider
          */
         $app->register(RouteServiceProvider::class);
 
-        $app->bind('Translations', EloquentTranslation::class);
+        $app->bind('Translations', Translation::class);
     }
 }

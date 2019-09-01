@@ -5,15 +5,9 @@ namespace TypiCMS\Modules\Translations\Http\Controllers;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Models\Translation;
-use TypiCMS\Modules\Translations\Repositories\EloquentTranslation;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(EloquentTranslation $translation)
-    {
-        parent::__construct($translation);
-    }
-
     /**
      * List models.
      *
@@ -31,7 +25,7 @@ class AdminController extends BaseAdminController
      */
     public function create()
     {
-        $model = $this->repository->createModel();
+        $model = new;
 
         return view('translations::admin.create')
             ->with(compact('model'));
@@ -59,7 +53,7 @@ class AdminController extends BaseAdminController
      */
     public function store(FormRequest $request)
     {
-        $translation = $this->repository->create($request->all());
+        $translation = ::create($request->all());
 
         return $this->redirect($request, $translation);
     }
@@ -74,7 +68,7 @@ class AdminController extends BaseAdminController
      */
     public function update(Translation $translation, FormRequest $request)
     {
-        $this->repository->update($request->id, $request->all());
+        ::update($request->id, $request->all());
 
         return $this->redirect($request, $translation);
     }
