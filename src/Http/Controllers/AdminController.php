@@ -2,73 +2,43 @@
 
 namespace TypiCMS\Modules\Translations\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Translations\Http\Requests\FormRequest;
 use TypiCMS\Modules\Translations\Models\Translation;
 
 class AdminController extends BaseAdminController
 {
-    /**
-     * List models.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
+    public function index(): View
     {
         return view('translations::admin.index');
     }
 
-    /**
-     * Create form for a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    public function create(): View
     {
-        $model = new;
+        $model = new Translation;
 
         return view('translations::admin.create')
             ->with(compact('model'));
     }
 
-    /**
-     * Edit form for the specified resource.
-     *
-     * @param \TypiCMS\Modules\Translations\Models\Translation $translation
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit(Translation $translation)
+    public function edit(Translation $translation): View
     {
         return view('translations::admin.edit')
             ->with(['model' => $translation]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \TypiCMS\Modules\Translations\Http\Requests\FormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(FormRequest $request)
+    public function store(FormRequest $request): RedirectResponse
     {
-        $translation = ::create($request->all());
+        $translation = Translation::create($request->all());
 
         return $this->redirect($request, $translation);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \TypiCMS\Modules\Translations\Models\Translation        $translation
-     * @param \TypiCMS\Modules\Translations\Http\Requests\FormRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(Translation $translation, FormRequest $request)
+    public function update(Translation $translation, FormRequest $request): RedirectResponse
     {
-        ::update($request->id, $request->all());
+        $translation->update($request->id, $request->all());
 
         return $this->redirect($request, $translation);
     }
