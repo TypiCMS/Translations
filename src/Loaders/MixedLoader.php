@@ -61,10 +61,9 @@ class MixedLoader extends FileLoader
      */
     public function loadFromDB($locale, $group, $namespace = null)
     {
-        return DB::table('translations')
-                ->select(DB::raw("JSON_UNQUOTE(JSON_EXTRACT(`translation`, '$.".$locale."')) AS translation"), 'key')
+        return Translation::select(DB::raw("JSON_UNQUOTE(JSON_EXTRACT(`translation`, '$.".$locale."')) AS translated"), 'key')
                 ->where('group', $group)
-                ->pluck('translation', 'key')
+                ->pluck('translated', 'key')
                 ->all();
     }
 }
