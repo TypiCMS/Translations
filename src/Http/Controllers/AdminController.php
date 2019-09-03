@@ -38,7 +38,7 @@ class AdminController extends BaseAdminController
 
     public function update(Translation $translation, FormRequest $request): RedirectResponse
     {
-        $translation->update($request->id, $request->all());
+        $translation->update($request->all());
 
         return $this->redirect($request, $translation);
     }
