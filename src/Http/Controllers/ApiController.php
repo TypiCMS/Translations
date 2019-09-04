@@ -19,7 +19,7 @@ class ApiController extends BaseApiController
             ->selectFields($request->input('fields.translations'))
             ->allowedSorts(['key', 'translation_translated'])
             ->allowedFilters([
-                AllowedFilter::custom('key,translation', new FilterOr),
+                AllowedFilter::custom('key,translation', new FilterOr()),
             ])
             ->paginate($request->input('per_page'));
 
