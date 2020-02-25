@@ -12,8 +12,7 @@ class MixedLoader extends FileLoader
     /**
      * Create a new file loader instance.
      *
-     * @param \Illuminate\Filesystem\Filesystem $files
-     * @param string                            $path
+     * @param string $path
      *
      * @return null
      */
