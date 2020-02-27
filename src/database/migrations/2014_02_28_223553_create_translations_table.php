@@ -7,8 +7,6 @@ class CreateTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return null
      */
     public function up()
     {
@@ -24,8 +22,6 @@ class CreateTranslationsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return null
      */
     public function down()
     {

@@ -13,8 +13,6 @@ class MixedLoader extends FileLoader
      * Create a new file loader instance.
      *
      * @param string $path
-     *
-     * @return null
      */
     public function __construct(Filesystem $files, $path)
     {
