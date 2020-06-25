@@ -2,6 +2,7 @@
 
 namespace TypiCMS\Modules\Translations\Loaders;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Translation\FileLoader;
 use TypiCMS\Modules\Translations\Models\Translation;
@@ -40,8 +41,11 @@ class MixedLoader extends FileLoader
      */
     public function loadFromDatabase(string $locale, string $group, string $namespace = null): array
     {
-        return Translation::select(DB::raw("JSON_UNQUOTE(JSON_EXTRACT(`translation`, '$.".$locale."')) AS translated"), 'key')
+        try {
+            Translation::select(DB::raw("JSON_UNQUOTE(JSON_EXTRACT(`translation`, '$.".$locale."')) AS translated"), 'key')
                 ->pluck('translated', 'key')
                 ->all();
+        } catch (Exception $e) {
+        }
     }
 }
