@@ -47,5 +47,7 @@ class MixedLoader extends FileLoader
                 ->all();
         } catch (Exception $e) {
         }
+
+        return [];
     }
 }
