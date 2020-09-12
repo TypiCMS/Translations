@@ -10,7 +10,7 @@ class FormRequest extends AbstractFormRequest
     {
         $rules = [
             'group' => 'required',
-            'key' => 'required|max:255',
+            'key' => 'required|max:255|unique:translations,key,'.$this->id,
             'translation.*' => 'nullable',
         ];
 
