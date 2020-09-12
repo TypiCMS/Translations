@@ -31,14 +31,14 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $translation = Translation::create($request->all());
+        $translation = Translation::create($request->validated());
 
         return $this->redirect($request, $translation);
     }
 
     public function update(Translation $translation, FormRequest $request): RedirectResponse
     {
-        $translation->update($request->all());
+        $translation->update($request->validated());
 
         return $this->redirect($request, $translation);
     }

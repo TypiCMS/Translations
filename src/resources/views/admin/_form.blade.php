@@ -4,7 +4,11 @@
 {!! BootForm::hidden('id') !!}
 {!! BootForm::hidden('group')->value('db') !!}
 
+@if ($model->id)
+{!! BootForm::hidden('key') !!}
+@else
 {!! BootForm::text(__('Key'), 'key')->required() !!}
+@endif
 
 <label class="control-label">{{ __('Translations') }}</label>
 
