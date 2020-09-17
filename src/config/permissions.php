@@ -2,9 +2,9 @@
 
 return [
     'translations' => [
-        'see-all-translations' => 'View list',
-        'create-translation' => 'Create',
-        'update-translation' => 'Edit',
-        'delete-translation' => 'Delete',
+        'read translations' => 'Read',
+        'create translations' => 'Create',
+        'update translations' => 'Edit',
+        'delete translations' => 'Delete',
     ],
 ];

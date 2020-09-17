@@ -27,11 +27,11 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
-                $router->get('translations', 'AdminController@index')->name('admin::index-translations')->middleware('can:see-all-translations');
-                $router->get('translations/create', 'AdminController@create')->name('admin::create-translation')->middleware('can:create-translation');
-                $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation')->middleware('can:update-translation');
-                $router->post('translations', 'AdminController@store')->name('admin::store-translation')->middleware('can:create-translation');
-                $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation')->middleware('can:update-translation');
+                $router->get('translations', 'AdminController@index')->name('admin::index-translations')->middleware('can:read translations');
+                $router->get('translations/create', 'AdminController@create')->name('admin::create-translation')->middleware('can:create translations');
+                $router->get('translations/{translation}/edit', 'AdminController@edit')->name('admin::edit-translation')->middleware('can:update translations');
+                $router->post('translations', 'AdminController@store')->name('admin::store-translation')->middleware('can:create translations');
+                $router->put('translations/{translation}', 'AdminController@update')->name('admin::update-translation')->middleware('can:update translations');
             });
 
             /*
@@ -39,9 +39,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('translations', 'ApiController@index')->middleware('can:see-all-translations');
-                    $router->patch('translations/{translation}', 'ApiController@updatePartial')->middleware('can:update-translation');
-                    $router->delete('translations/{translation}', 'ApiController@destroy')->middleware('can:delete-translation');
+                    $router->get('translations', 'ApiController@index')->middleware('can:read translations');
+                    $router->patch('translations/{translation}', 'ApiController@updatePartial')->middleware('can:update translations');
+                    $router->delete('translations/{translation}', 'ApiController@destroy')->middleware('can:delete translations');
                 });
             });
         });
