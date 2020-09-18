@@ -9,7 +9,6 @@ class FormRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'group' => 'required',
             'key' => 'required|max:255|unique:translations,key,'.$this->id,
             'translation.*' => 'nullable',
         ];

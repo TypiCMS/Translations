@@ -13,7 +13,6 @@ class CreateTranslationsTable extends Migration
         Schema::create('translations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('group');
             $table->string('key');
             $table->json('translation');
             $table->timestamps();

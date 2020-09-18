@@ -2,7 +2,6 @@
 @endcomponent
 
 {!! BootForm::hidden('id') !!}
-{!! BootForm::hidden('group')->value('db') !!}
 
 @if ($model->id)
 {!! BootForm::hidden('key') !!}

@@ -18,10 +18,6 @@ class MixedLoader extends FileLoader
      */
     public function load($locale, $group, $namespace = null): array
     {
-        if (is_null($namespace) || $namespace === '*' && $group === 'db') {
-            return $this->loadFromDatabase($locale, $group, $namespace);
-        }
-
         if ($group === '*' && $namespace === '*') {
             $jsonTranslations = $this->loadJsonPaths($locale);
             $databaseTranslations = $this->loadFromDatabase($locale, $group, $namespace);
