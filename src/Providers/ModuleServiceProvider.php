@@ -5,7 +5,7 @@ namespace TypiCMS\Modules\Translations\Providers;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Translations\Composers\SidebarViewComposer;
 
-class ModuleProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
