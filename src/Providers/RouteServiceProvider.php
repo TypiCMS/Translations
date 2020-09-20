@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
                 $router->get('translations', [AdminController::class, 'index'])->name('admin::index-translations')->middleware('can:read translations');
                 $router->get('translations/create', [AdminController::class, 'create'])->name('admin::create-translation')->middleware('can:create translations');
-                $router->get('translations/{translation}/edit', [AdminController::class, 'edit'])->name('admin::edit-translation')->middleware('can:update translations');
+                $router->get('translations/{translation}/edit', [AdminController::class, 'edit'])->name('admin::edit-translation')->middleware('can:read translations');
                 $router->post('translations', [AdminController::class, 'store'])->name('admin::store-translation')->middleware('can:create translations');
                 $router->put('translations/{translation}', [AdminController::class, 'update'])->name('admin::update-translation')->middleware('can:update translations');
             });

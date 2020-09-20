@@ -4,7 +4,7 @@ return [
     'translations' => [
         'read translations' => 'Read',
         'create translations' => 'Create',
-        'update translations' => 'Edit',
+        'update translations' => 'Update',
         'delete translations' => 'Delete',
     ],
 ];
