@@ -15,28 +15,24 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        Route::namespace($this->namespace)->group(function (Router $router) {
-            /*
-             * Admin routes
-             */
-            $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
-                $router->get('translations', [AdminController::class, 'index'])->name('admin::index-translations')->middleware('can:read translations');
-                $router->get('translations/create', [AdminController::class, 'create'])->name('admin::create-translation')->middleware('can:create translations');
-                $router->get('translations/{translation}/edit', [AdminController::class, 'edit'])->name('admin::edit-translation')->middleware('can:read translations');
-                $router->post('translations', [AdminController::class, 'store'])->name('admin::store-translation')->middleware('can:create translations');
-                $router->put('translations/{translation}', [AdminController::class, 'update'])->name('admin::update-translation')->middleware('can:update translations');
-            });
+        /*
+         * Admin routes
+         */
+        Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Router $router) {
+            $router->get('translations', [AdminController::class, 'index'])->name('index-translations')->middleware('can:read translations');
+            $router->get('translations/create', [AdminController::class, 'create'])->name('create-translation')->middleware('can:create translations');
+            $router->get('translations/{translation}/edit', [AdminController::class, 'edit'])->name('edit-translation')->middleware('can:read translations');
+            $router->post('translations', [AdminController::class, 'store'])->name('store-translation')->middleware('can:create translations');
+            $router->put('translations/{translation}', [AdminController::class, 'update'])->name('update-translation')->middleware('can:update translations');
+        });
 
-            /*
-             * API routes
-             */
-            $router->middleware('api')->prefix('api')->group(function (Router $router) {
-                $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('translations', [ApiController::class, 'index'])->middleware('can:read translations');
-                    $router->patch('translations/{translation}', [ApiController::class, 'updatePartial'])->middleware('can:update translations');
-                    $router->delete('translations/{translation}', [ApiController::class, 'destroy'])->middleware('can:delete translations');
-                });
-            });
+        /*
+         * API routes
+         */
+        Route::middleware(['api', 'auth:api'])->prefix('api')->group(function (Router $router) {
+            $router->get('translations', [ApiController::class, 'index'])->middleware('can:read translations');
+            $router->patch('translations/{translation}', [ApiController::class, 'updatePartial'])->middleware('can:update translations');
+            $router->delete('translations/{translation}', [ApiController::class, 'destroy'])->middleware('can:delete translations');
         });
     }
 }
