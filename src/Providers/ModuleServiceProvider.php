@@ -25,6 +25,10 @@ class ModuleServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views' => resource_path('views/vendor/translations'),
         ], 'views');
 
+        $this->publishes([
+            __DIR__.'/../database/seeds/TranslationSeeder.php' => database_path('seeds/TranslationSeeder.php'),
+        ], 'seeders');
+
         /*
          * Sidebar view composer
          */
