@@ -12,7 +12,7 @@
 <label class="control-label">{{ __('Translations') }}</label>
 
 @foreach ($locales as $lang)
-    <div class="form-group">
+    <div class="mb-3">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">{{ strtoupper($lang) }}</span>
