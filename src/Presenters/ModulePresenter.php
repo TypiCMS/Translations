@@ -8,10 +8,8 @@ class ModulePresenter extends Presenter
 {
     /**
      * Return name.
-     *
-     * @return string
      */
-    public function title()
+    public function title(): string
     {
         return $this->entity->key;
     }
