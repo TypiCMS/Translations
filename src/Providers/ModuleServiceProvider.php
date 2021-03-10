@@ -15,18 +15,18 @@ class ModuleServiceProvider extends ServiceProvider
         $modules = $this->app['config']['typicms']['modules'];
         $this->app['config']->set('typicms.modules', array_merge(['translations' => []], $modules));
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'translations');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'translations');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/create_translations_table.php.stub' => getMigrationFileName('create_translations_table'),
+            __DIR__.'/../../database/migrations/create_translations_table.php.stub' => getMigrationFileName('create_translations_table'),
         ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/translations'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/translations'),
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/../database/seeders/TranslationSeeder.php' => database_path('seeders/TranslationSeeder.php'),
+            __DIR__.'/../../database/seeders/TranslationSeeder.php' => database_path('seeders/TranslationSeeder.php'),
         ], 'seeders');
 
         /*
