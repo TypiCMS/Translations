@@ -1,5 +1,7 @@
-@component('core::admin._buttons-form', ['model' => $model])
-@endcomponent
+<div class="btn-toolbar mb-4">
+    <button class="btn btn-sm btn-primary me-2" value="true" id="exit" name="exit" type="submit">{{ __('Save and exit') }}</button>
+    <button class="btn btn-sm btn-light me-2" type="submit">{{ __('Save') }}</button>
+</div>
 
 {!! BootForm::hidden('id') !!}
 
