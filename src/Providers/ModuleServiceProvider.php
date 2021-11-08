@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Translations\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Translations\Composers\SidebarViewComposer;
+use TypiCMS\Modules\Translations\Models\Translation;
 
 class ModuleServiceProvider extends ServiceProvider
 {
