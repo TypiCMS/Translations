@@ -2,19 +2,17 @@
 
 namespace TypiCMS\Modules\Translations\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Translations\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Translations\Models\Translation;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.translations');
         $this->mergeConfigFrom(__DIR__.'/../config/permissions.php', 'typicms.permissions');
-
-        $modules = $this->app['config']['typicms']['modules'];
-        $this->app['config']->set('typicms.modules', array_merge(['translations' => []], $modules));
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'translations');
 
@@ -30,21 +28,13 @@ class ModuleServiceProvider extends ServiceProvider
             __DIR__.'/../../database/seeders/TranslationSeeder.php' => database_path('seeders/TranslationSeeder.php'),
         ], 'seeders');
 
-        /*
-         * Sidebar view composer
-         */
-        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('core::admin._sidebar', SidebarViewComposer::class);
     }
 
-    public function register()
+    public function register(): void
     {
-        $app = $this->app;
+        $this->app->register(RouteServiceProvider::class);
 
-        /*
-         * Register route service provider
-         */
-        $app->register(RouteServiceProvider::class);
-
-        $app->bind('Translations', Translation::class);
+        $this->app->bind('Translations', Translation::class);
     }
 }
